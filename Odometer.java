@@ -45,7 +45,7 @@ public class Odometer {
 
     }
 
-    private  boolean isRepeted(int num){
+    private  boolean isRepeated(int num){
 
         String numString = String.valueOf(num);
         List<String> allCharInNum = Arrays.asList(numString.split(""));
@@ -61,7 +61,7 @@ public class Odometer {
 
     private boolean isValid(int num){
 
-        return isSorted(num) && !isRepeted(num);
+        return isSorted(num) && !isRepeated(num);
 
     }
 
