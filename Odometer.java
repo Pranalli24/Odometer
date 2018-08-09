@@ -1,6 +1,3 @@
-
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Odometer {
@@ -12,6 +9,61 @@ public class Odometer {
         this.numOfDigit = numOfDigit;
     }
 
+    public int nextNum (int num)
+    {
+        int index= allNumb.indexOf(num);
+        index=(index+1)%allNumb.size();
+        return allNumb.get(index);
+
+    }
+
+    public int incrementN(int n, int num){
+
+
+        int index=allNumb.indexOf(num);
+        if((index + n) >= allNumb.size())
+        {
+            index=(index+n)%(allNumb.size());
+            return allNumb.get(index);
+        }
+        else
+            return allNumb.get(index+n);
+        
+    }
+
+    public int prevNum(int num){
+
+        int index= allNumb.indexOf(num);
+
+        if(index-1<0)
+            return allNumb.get(allNumb.size()-1);
+        else
+            return allNumb.get(index-1);
+        
+    }
+
+
+    public int decrementN(int n, int num){
+        int index=allNumb.indexOf(num);
+        int sizeAllNum = allNumb.size();
+        if((index - n) < 0)
+        {
+            return allNumb.get((n-index)%allNumb.size());
+        }
+        return allNumb.get(index-n);
+    }
+
+    public int getDifference(int num1, int num2) {
+        
+        int index1 = allNumb.indexOf(num1);
+        int index2 = allNumb.indexOf(num2);
+        int size = allNumb.size();
+
+        if(index1 <= index2 )return index2-index1;
+        return (size-index1+index2);
+
+    }
+    
     private int generateMinNumber(){
 
         int temp = 1;
@@ -82,6 +134,16 @@ public class Odometer {
     public static  void main (String []args){
         Odometer o = new Odometer(3);
         o.generateAllNumbers();
-        System.out.print(o.allNumb);
+//        System.out.print(o.allNumb);
+        System.out.println("1 " + o.nextNum(123));
+        System.out.println("2 " + o.nextNum(789));
+        System.out.println("3 " + o.incrementN(100000, 123));
+        System.out.println("4 " + o.incrementN(100000, 789));
+        System.out.println("5 " + o.prevNum(123));
+        System.out.println("6 " + o.prevNum(789));
+        System.out.println("7 " + o.decrementN(100000, 123));
+        System.out.println("8 " + o.decrementN(100000,789));
+        System.out.println("9 " + o.getDifference(789, 123));
+        System.out.println("10 " + o.getDifference(123,789));
     }
 }
